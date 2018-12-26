@@ -26,23 +26,15 @@ public class WOPositiveLoginTests {
     {
         Assert.assertTrue(BrowserUtils.verifyTextMatches(driver.getTitle(),"Web Orders Login"), "Expected title is Web Orders Login but was"+
                 driver.getTitle());
-    }
-    @Test
-    public void urlTest()
-    {
         String expected="http://secure.smartbearsoftware.com/samples/testcomplete12/WebOrders/login.aspx";
         Assert.assertTrue(BrowserUtils.verifyTextMatches(driver.getCurrentUrl(),expected), "found url is "+
                 driver.getCurrentUrl());
-    }
-    @Test
-    public void titleAfterLoginTest()
-    {
+
         driver.findElement(By.id("ctl00_MainContent_username")).sendKeys("Tester");
         driver.findElement(By.id("ctl00_MainContent_password")).sendKeys("test");
         driver.findElement(By.id("ctl00_MainContent_login_button")).click();
         Assert.assertTrue(BrowserUtils.verifyTextMatches(driver.getTitle(),"Web Orders"), "Expected title is Web Orders Login but was "+
                 driver.getTitle());
-
     }
 
     @AfterMethod

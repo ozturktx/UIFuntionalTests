@@ -34,15 +34,6 @@ public class WONegativeLoginTests {
                 driver.getTitle());
         Assert.assertTrue(BrowserUtils.verifyTextMatches(driver.getCurrentUrl(),url), "found url is "+
                 driver.getCurrentUrl());
-
-    }
-    @Test
-    public void NegativeLoginTestWrongPassword()
-    {
-
-        Assert.assertTrue(BrowserUtils.verifyTextMatches(driver.getTitle(),"Web Orders Login"), "Expected title is Web Orders Login but was"+
-                driver.getTitle());
-        String url=driver.getCurrentUrl();
         driver.findElement(By.id("ctl00_MainContent_username")).sendKeys("Tester");
         driver.findElement(By.id("ctl00_MainContent_password")).sendKeys("tester");
         driver.findElement(By.id("ctl00_MainContent_login_button")).click();
@@ -50,16 +41,10 @@ public class WONegativeLoginTests {
                 driver.getTitle());
         Assert.assertTrue(BrowserUtils.verifyTextMatches(driver.getCurrentUrl(),url), "found url is "+
                 driver.getCurrentUrl());
-
-    }
-    @Test
-    public void NegativeLoginTestBlankUsername()
-    {
-
         Assert.assertTrue(BrowserUtils.verifyTextMatches(driver.getTitle(),"Web Orders Login"), "Expected title is Web Orders Login but was"+
                 driver.getTitle());
-        String url=driver.getCurrentUrl();
-       // driver.findElement(By.id("ctl00_MainContent_username")).sendKeys("Tester");
+
+        driver.findElement(By.id("ctl00_MainContent_username")).clear();
         driver.findElement(By.id("ctl00_MainContent_password")).sendKeys("tester");
         driver.findElement(By.id("ctl00_MainContent_login_button")).click();
         Assert.assertTrue(BrowserUtils.verifyTextMatches(driver.getTitle(),"Web Orders Login"), "Expected title is Web Orders Login but was"+
@@ -67,23 +52,15 @@ public class WONegativeLoginTests {
         Assert.assertTrue(BrowserUtils.verifyTextMatches(driver.getCurrentUrl(),url), "found url is "+
                 driver.getCurrentUrl());
 
-    }
-    @Test
-    public void NegativeLoginTestBlankPassword()
-    {
-
-        Assert.assertTrue(BrowserUtils.verifyTextMatches(driver.getTitle(),"Web Orders Login"), "Expected title is Web Orders Login but was"+
-                driver.getTitle());
-        String url=driver.getCurrentUrl();
         driver.findElement(By.id("ctl00_MainContent_username")).sendKeys("Tester");
-        //driver.findElement(By.id("ctl00_MainContent_password")).sendKeys("tester");
+        driver.findElement(By.id("ctl00_MainContent_password")).clear();
         driver.findElement(By.id("ctl00_MainContent_login_button")).click();
         Assert.assertTrue(BrowserUtils.verifyTextMatches(driver.getTitle(),"Web Orders Login"), "Expected title is Web Orders Login but was"+
                 driver.getTitle());
         Assert.assertTrue(BrowserUtils.verifyTextMatches(driver.getCurrentUrl(),url), "found url is "+
                 driver.getCurrentUrl());
-
     }
+
     @AfterMethod
     public void tearDown() throws InterruptedException {
         Thread.sleep(5000);
