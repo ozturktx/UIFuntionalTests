@@ -67,11 +67,10 @@ driver.findElement(By.linkText("View all products")).click();
             driver.findElement(By.id("ctl00_MainContent_fmwOrder_InsertButton")).click();
             driver.findElement(By.linkText("View all orders")).click();
 
-            List<WebElement> AddedRow=driver.findElements(By.xpath("//table[@id='ctl00_MainContent_orderGrid']//tr[2]"));
-            for (WebElement a:AddedRow) {
-                System.out.println(a.getText());
-            }
-Assert.assertTrue(AddedRow.get(0).getText().contains(name) &&AddedRow.get(0).getText().contains(cardNumber));
+          //  List<WebElement> AddedRow=driver.findElements(By.xpath("//table[@id='ctl00_MainContent_orderGrid']//tr[2]"));
+            String arow=driver.findElements(By.xpath("//table[@id='ctl00_MainContent_orderGrid']//tr[2]")).get(0).getText();
+            Assert.assertTrue(arow.contains(name) &&arow.contains(cardNumber));
+//Assert.assertTrue(AddedRow.get(0).getText().contains(name) &&AddedRow.get(0).getText().contains(cardNumber));
 
 }
 
@@ -80,10 +79,19 @@ Assert.assertTrue(AddedRow.get(0).getText().contains(name) &&AddedRow.get(0).get
     login();
     List<WebElement> rows=driver.findElements(By.xpath("//table[@id='ctl00_MainContent_orderGrid']//tr"));
     int rowCount=rows.size();
-driver.findElement(By.xpath("//table[@id='ctl00_MainContent_orderGrid']//tr["+random.nextInt((rowCount-2)+2)+"]//td[1]//input")).click();
+    int rrow=random.nextInt(rowCount-2)+2;
+    WebElement randomPerson=
+            driver.findElement(By.xpath("//table[@id='ctl00_MainContent_orderGrid']//tr["+rrow+"]//td[2]"));
+    String randomPersonName=randomPerson.getText();
+
+    driver.findElement(By.xpath("//table[@id='ctl00_MainContent_orderGrid']//tr["+rrow+"]//td[1]//input")).click();
     driver.findElement(By.name("ctl00$MainContent$btnDelete")).click();
     rows=driver.findElements(By.xpath("//table[@id='ctl00_MainContent_orderGrid']//tr"));
+   // List<String> names=driver.findElements(By.xpath("//table[@id='ctl00_MainContent_orderGrid']//tr/td[2]")).g
     Assert.assertTrue(rows.size()==rowCount-1);
+    //System.out.println(randomPersonName);
+    //System.out.println(driver.findElement(By.xpath("//table[@id='ctl00_MainContent_orderGrid']//tr["+rrow+"]//td[2]")).getText());
+    Assert.assertNotEquals(driver.findElement(By.xpath("//table[@id='ctl00_MainContent_orderGrid']//tr["+rrow+"]//td[2]")).getText(),randomPersonName);
 }
 
     @Test
